@@ -33,7 +33,7 @@ def add_book():
 
     in_book_name = input("Please add the book's name ")
     in_author = input("Please add the author's name ")
-    in_availability = input("Please add the number of books ")
+    in_availability = int(input("Please add the number of books "))
 
     Books [len(Books)] = {"name": in_book_name,"author": in_author, "availability": in_availability}
     print(Books)
@@ -41,34 +41,41 @@ def add_book():
 def borrow_book():
 
     in_book_name = input("Please add the book's name ")
-    in_author = input("Please add the author's name ")
+    
+    found = False
 
     for id in range(len(Books)): # id is an unique code, this part will see if the book is available
-        if (Books[id]["name"] == in_book_name or Books[id]["author"] == in_author) and Books[id]["availability"] >= 1:
-            print("The book is available")
-            break
-        else:
-            print("The book is not available")
-            break
+        if Books[id]["name"] == in_book_name and Books[id]["availability"] >= 1:
+            found = True
+
+    if found:
+        Books[id]["availability"] -= 1
+        print("Book borrowed succesfully")
+
+    else:
+        print("The book is not available")
+
 
 def return_book():
         
-        in_book_name = input("Please add the book's name ")
-        in_author = input("Please add the author's name ")
+        in_book_name = input("Please add the book's name: ")
+        in_author = input("Please add the author's name: ")
 
         for id in range(len(Books)):
             if (Books[id]["name"] == in_book_name or Books[id]["author"] == in_author):
                     Books[id]["availability"] += 1
-                
+
+        print("Book returned successfully.")
+        
 def available_books():
      
     for id in range(len(Books)):
         if  Books[id]["availability"] == 0:
                 pass
         else:
-                print(f"{Books[id]["name"]} - {Books[id]["author"]}; available copies: {Books[id]["availability"]} \n")
+                print(f"{Books[id]['name']} - {Books[id]['author']}; available copies: {Books[id]['availability']} \n")
 
-def file():
+def save_books():
      with open("Available Books.txt", "w") as file:
           for id in range(len(Books)):
                   if  Books[id]["availability"] == 0:
@@ -98,7 +105,7 @@ while True:
             case '4':
                 available_books()
             case '5':
-                file()
+                save_books()
                    
                    
     

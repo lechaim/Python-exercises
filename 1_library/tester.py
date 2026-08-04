@@ -9,6 +9,23 @@ Books = {
 
 
 
-numbers_for_options = [1,2,3,4]
+def borrow_book():
 
-print(len(numbers_for_options))
+    in_book_name = input("Please add the book's name ")
+
+    found = False
+
+    for id in range(len(Books)): # id is an unique code, this part will see if the book is available
+        if Books[id]["name"] == in_book_name and Books[id]["availability"] >= 1:
+            found = True
+
+
+
+    if found:
+        Books[id]["availability"] -= 1
+        print("Book borrowed succesfully")
+
+    else:
+        print("The book is not available")
+
+borrow_book()
