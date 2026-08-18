@@ -21,9 +21,9 @@
 # Choose an option:
 
 accounts = {
-    0: {"name": "Jose Perez","account_type": "savings", "currency": "dollars", "amount": "1000"},
-    1: {"name": "Clara Espacios","account_type": "savings", "currency": "dollars", "amount": "1000"},
-    2: {"name": "Lalo Pie","account_type": "savings", "currency": "dollars", "amount": "1000"}
+    0: {"name": "Jose Perez","account_type": "savings", "currency": "dollars", "amount": 1000},
+    1: {"name": "Clara Espacios","account_type": "savings", "currency": "dollars", "amount": 4500},
+    2: {"name": "Lalo Pie","account_type": "savings", "currency": "dollars", "amount": 2000}
 }
 
 def create_account():
@@ -32,11 +32,18 @@ def create_account():
     name = input("Add the owner's name: ")
     account_type = input("Select the account type: ")
     currency = input("Select the currency: ")
-    amount = input("Select the amount you want to open this account: ")
-    accounts[account_number] = {"name": name,"account_type": account_type, "currencyss": currency}
-#as
+    amount = int(input("Select the amount you want to open this account: "))
+    accounts[account_number] = {"name": name,"account_type": account_type, "currencys": currency}
+
 def deposit():
-    pass
+    amount = int(input("Add the amount you wish to deposit: "))
+    account_number = int(input("Add the account number you wish to deposit: "))
+
+    try:
+        accounts[0]['amount'] += account_number
+    except:
+        print("Please only add numbers")
+
 
 
 def withdraw():
