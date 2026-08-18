@@ -34,7 +34,7 @@ def create_account():
     currency = input("Select the currency: ")
     amount = input("Select the amount you want to open this account: ")
     accounts[account_number] = {"name": name,"account_type": account_type, "currencyss": currency}
-
+#as
 def deposit():
     pass
 
