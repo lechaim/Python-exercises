@@ -1,0 +1,273 @@
+This is a good first project. You clearly understand the basics of Python and how to break a problem into functions. I'd give it a 7/10 for programming fundamentals.
+
+Here's what stood out.
+
+👍 What you did well
+1. Good decomposition
+
+Instead of writing everything in one giant loop, you separated the program into functions:
+
+add_book()
+borrow_book()
+return_book()
+available_books()
+file()
+
+This is exactly how programs should start to be organized.
+
+2. Good data structure
+
+Using a dictionary of dictionaries is a reasonable choice.
+
+Books = {
+    0: {
+        "name": "...",
+        "author": "...",
+        "availability": 1
+    }
+}
+
+It lets you keep related information together.
+
+3. You used loops correctly
+for id in range(len(Books)):
+
+This shows you understand iteration.
+
+Although later you'll learn a cleaner way.
+
+4. File handling
+
+Writing available books to a text file is a nice addition.
+
+with open(...):
+
+Good use of a context manager.
+
+5. Menu loop
+
+Using
+
+while True:
+
+combined with
+
+match
+
+makes the menu easy to read.
+
+Things to improve
+1. Availability should always be an integer
+
+Here:
+
+in_availability = input(...)
+
+input() returns a string.
+
+So you're storing
+
+"5"
+
+instead of
+
+5
+
+Later this causes problems.
+
+Instead
+
+in_availability = int(input("Number of copies: "))
+2. Borrowing doesn't actually borrow
+
+You check if the book exists.
+
+if available:
+    print("The book is available")
+
+But you never decrease availability.
+
+It should become
+
+Books[id]["availability"] -= 1
+print("Book borrowed successfully.")
+
+Otherwise inventory never changes.
+
+3. Logic bug in borrow_book()
+
+This is probably the biggest issue.
+
+You wrote
+
+for id in range(len(Books)):
+    if ...
+        break
+    else:
+        print(...)
+        break
+
+Imagine this library
+
+1984
+Pride and Prejudice
+Mockingbird
+
+The user searches for
+
+Mockingbird
+
+Your loop checks
+
+1984
+
+Not a match.
+
+Immediately
+
+Book not available
+
+because of
+
+break
+
+The other books are never checked.
+
+A better approach is:
+
+found = False
+
+for ...
+    if ...
+        found = True
+        ...
+        break
+
+if not found:
+    print("Book not found.")
+4. return_book() should tell the user something
+
+Currently it silently increases availability.
+
+Better
+
+print("Book returned successfully.")
+
+or
+
+print("Book not found.")
+5. Naming
+
+Python convention is
+
+books
+
+instead of
+
+Books
+
+Variables use lowercase.
+
+Constants use uppercase.
+
+6. Don't shadow built-ins
+
+This function
+
+def file():
+
+overwrites the built-in name file.
+
+A better name is
+
+save_books()
+7. Don't convert twice
+
+You do
+
+options = input(...)
+
+then
+
+int(options)
+
+If the user types
+
+hello
+
+your program crashes.
+
+Instead
+
+try:
+    option = int(input(...))
+except ValueError:
+    print("Invalid input.")
+8. You repeat code
+
+For example
+
+for id in range(len(Books)):
+
+appears several times.
+
+Eventually you'll learn to create helper functions.
+
+9. Iterate over the dictionary itself
+
+Instead of
+
+for id in range(len(Books)):
+
+you can write
+
+for book_id, book in Books.items():
+    print(book["name"])
+
+This is the Pythonic way and doesn't rely on keys being consecutive integers.
+
+One syntax issue
+
+This line
+
+print(f"{Books[id]["name"]}")
+
+will actually raise a syntax error because the double quotes conflict.
+
+Use
+
+print(f"{Books[id]['name']}")
+
+or
+
+print(f'{Books[id]["name"]}')
+
+The same applies to your file.write() call.
+
+What I'd add next
+
+If you want to make this feel like a real library system, consider adding:
+
+Search by title.
+Remove a book.
+Save the entire library to a JSON file.
+Load the library from a JSON file when the program starts.
+Prevent duplicate books from being added.
+Validate that availability can't be negative.
+An "Exit" option that cleanly ends the program.
+Overall assessment
+
+For someone practicing programming fundamentals, you're on the right track. You show that you understand:
+
+✅ Variables
+✅ Dictionaries
+✅ Functions
+✅ Loops
+✅ Conditionals
+✅ User input
+✅ File handling
+✅ Basic program organization
+
+The biggest areas to improve are program logic (making sure loops fully search and state changes actually happen) and input validation.
+
+Once you've tightened up those areas, I'd say you're ready for a project that's a step up in complexity, like a Banking System or an Expense Tracker, where you'll practice managing more complex program state and writing more robust logic.
