@@ -8,8 +8,8 @@ accounts = {
 
 
 
-try:
-    print(accounts["a"])
-except:
-    print("Please only add numbers")
+variable = accounts[0]['amount']
+print(variable -= 500)
+print(accounts[0])
+
 

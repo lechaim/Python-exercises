@@ -37,17 +37,25 @@ def create_account():
 
 def deposit():
     amount = int(input("Add the amount you wish to deposit: "))
-    account_number = int(input("Add the account number you wish to deposit: "))
+    account_number = int(input("Select the account number you wish to deposit: "))
 
     try:
-        accounts[0]['amount'] += account_number
+        accounts[account_number]['amount'] += amount
     except:
         print("Please only add numbers")
 
 
 
 def withdraw():
-    pass
+    account_number = int(input("Select the account number you wish to withdraw: "))
+    amount = int(input("Add the amount you wish to withdraw: "))
+    
+    try:
+        new_amount = accounts[account_number]['amount'] - amount
+        accounts[account_number]['amount'] = new_amount
+        print(f"You have withdrawn {amount} and your new balance is {accounts[account_number]['amount']} ")
+    except:
+        print("Please only add numbers")
 
 def transfer():
     pass
@@ -67,3 +75,4 @@ def saved_accounts():
 def load_accounts():
     pass
 
+withdraw()
