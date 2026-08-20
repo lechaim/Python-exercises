@@ -1,0 +1,188 @@
+Feature 1 — Create Account
+
+Ask for:
+
+Customer name
+Initial deposit
+
+Rules:
+
+Name cannot be empty.
+Initial deposit cannot be negative.
+Generate a unique account number.
+Balance starts with the initial deposit.
+Add a history entry:
+"Account created with $500"
+Feature 2 — Deposit
+
+Ask for:
+
+Account number
+Amount
+
+Rules:
+
+Account must exist.
+Deposit must be greater than 0.
+Increase balance.
+Record the transaction.
+
+Example history:
+
+Deposited $100
+Feature 3 — Withdraw
+
+Ask for:
+
+Account number
+Amount
+
+Rules:
+
+Account exists.
+Amount > 0.
+Cannot withdraw more than the balance.
+Update balance.
+Save transaction.
+
+Example:
+
+Withdrew $75
+Feature 4 — Transfer
+
+Ask for:
+
+Sender account
+Receiver account
+Amount
+
+Rules:
+
+Both accounts exist.
+Cannot transfer to the same account.
+Enough balance.
+Update both balances.
+Record the transfer in both histories.
+
+Example:
+
+Sender:
+
+Transferred $100 to account 1002
+
+Receiver:
+
+Received $100 from account 1001
+Feature 5 — View Account
+
+Display:
+
+Account Number: 1001
+Owner: Michael
+Balance: $425.50
+Feature 6 — View All Accounts
+
+Example:
+
+1001 - Michael - $425.50
+
+
+1002 - Sarah - $985.00
+
+
+1003 - John - $12.00
+Feature 7 — Transaction History
+
+Ask for an account number.
+
+Display every transaction.
+
+Example:
+
+Account created with $500
+
+
+Deposited $200
+
+
+Transferred $50 to account 1002
+
+
+Withdrew $25
+Feature 8 — Save Accounts
+
+Save everything to a JSON file.
+
+Suggested filename:
+
+accounts.json
+
+Use the json module instead of writing plain text. This preserves the full account structure.
+
+Feature 9 — Load Accounts
+
+When selected, load data from accounts.json.
+
+If the file doesn't exist:
+
+No saved accounts found.
+
+The program should continue running instead of crashing.
+
+Feature 10 — Exit
+
+Before exiting:
+
+Would you like to save first? (Y/N)
+Validation Requirements
+
+Your program should gracefully handle:
+
+Empty names
+Invalid account numbers
+Negative deposits
+Negative withdrawals
+Deposits of zero
+Withdrawals of zero
+Insufficient funds
+Transfers to the same account
+Non-numeric input where numbers are expected
+Missing JSON file
+Corrupted JSON file (optional bonus)
+
+The program should never crash because of user input.
+
+Recommended Functions
+
+Try to write one function per responsibility, for example:
+
+create_account()
+deposit()
+withdraw()
+transfer()
+view_account()
+view_all_accounts()
+show_history()
+save_accounts()
+load_accounts()
+generate_account_number()
+find_account()
+Extra Challenge (Optional)
+
+If you finish the core features, try adding:
+
+Delete an account (only if the balance is $0).
+Search accounts by customer name.
+Display the bank's total assets (sum of all balances).
+Show the top 5 accounts with the highest balances.
+Charge a monthly maintenance fee to all accounts.
+Calculate and apply interest to savings accounts.
+Rules
+
+To get the most out of this exercise, challenge yourself with these constraints:
+
+✅ Use only programming fundamentals (functions, loops, dictionaries, lists, conditionals, exceptions, file handling).
+❌ Don't use classes or object-oriented programming yet.
+❌ Don't use external libraries beyond Python's standard library (such as json).
+
+If you can complete this project cleanly with solid validation and program logic, you'll have a very strong grasp of Python fundamentals and be well prepared to move on to object-oriented programming and more advanced projects.
